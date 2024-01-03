@@ -1,19 +1,24 @@
-1.
+1. Yes.
 
-2.
+2. 
+Bit vector of unknown size introduced near this location.
+Please remove unnecessary extensions, truncations and concatenations and/or
+provide more type information to resolve this ambiguity.
 
-3.
+compiler can deduce them from the first operand in compliation time.
+
+3. unsigned multiplier.
 
 4.
 Current Bits | Previous Bit | Original Booth Encoding | Radix-4 Booth Encoding
 -------------+--------------+-------------------------+-----------------------
-    00       |      0       |                         |           
-    00       |      1       |                         |           
+    00       |      0       |           00            |         00
+    00       |      1       |           0+            |         0+
     01       |      0       |           +-            |         0+
-    01       |      1       |                         |           
-    10       |      0       |                         |           
-    10       |      1       |                         |           
-    11       |      0       |                         |           
-    11       |      1       |                         |           
+    01       |      1       |           +0            |         +0
+    10       |      0       |           -0            |         -0
+    10       |      1       |           -+            |         0-
+    11       |      0       |           0-            |         0-
+    11       |      1       |           00            |         00
 
-5.
+5. No, consider current bits 011 and previous bit 0, so original booth encoding is +0-, radix-8 Booth encoding is 0++, makes it unable to be represented by one non-zero symbol.

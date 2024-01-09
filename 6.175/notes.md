@@ -26,6 +26,7 @@ Polymorphism in BSV: the implementation of the hardware changes automatically ba
 `pack` and `unpack` are built-in functions that convert to and from `Bit#(n)` respectively.
 
 `UInt#(n)`, `Int#(n)`
+
 `zeroExtend()`, `signExtend()`
 
 modules must be explicitly instantiated using the `<-` notation。
@@ -45,3 +46,40 @@ modules must be explicitly instantiated using the `<-` notation。
 动作值方法可以有隐式条件，如果隐式条件不满足，则调用它的规则不激活。
 
 `TLog#(n)`: `ceil(log2(n))`
+
+## lab 3
+
+FFT: Converts signals from time domain to frequency domain.
+
+IFFT: Converts signals from frequency domain to time domain.
+
+`struct` example (Complex):
+```bsv
+typedef struct{
+    Int#(t) r;
+    Int#(t) i;
+} Complex# (numeric type t) deriving (Eq,Bits);
+```
+
+parallel composition of actions: illegal when double-write problem occurs.
+
+double-write problem, make sure writes into a register or a method call are mutually exclusive.
+
+A `rule` inside a module may execute anytime.
+
+Sequential Circuits:
+| pipeline | folded |
+|:--------:|:------:|
+|increase the circuit throughput by evaluating multiple inputs| save area and reduce the combinational delay|
+
+pipeline:
+- Inelastic: all pipeline stages move synchronously. (use reg)
+- Elastic: A pipeline stage can process data if its input FIFO is not empty and output FIFO is not Full. (use fifo)
+
+Overloading
+
+`mkReg()`, `mkRegU`, `replicateM()`
+
+思考：inelastic pipeline的实现只需要两个大寄存器，不需要stage counter。 `maybe`!
+
+`maybe`, `tagged`, `case matches`
